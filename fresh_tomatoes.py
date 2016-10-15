@@ -1,6 +1,7 @@
 import webbrowser
 import os
 import re
+import media
 
 # Styles and scripting for the page
 main_page_head = '''
@@ -136,16 +137,19 @@ def create_movie_tiles_content(movies):
         trailer_youtube_id = youtube_id_match.group(0) if youtube_id_match else None
 
         # Append the tile for the movie with its content filled in
-        content += movie_tile_content.format(
-            
-            if isinstance(movie,TVShow):
+        if isinstance(movie, media.TVShow):
+            content += movie_tile_content.format(
                 movie_title=movie.title+"("+movie.station+")",
-            else:
+                poster_image_url=movie.poster_image_url,
+                trailer_youtube_id=trailer_youtube_id
+            )
+            
+        else:
+            content += movie_tile_content.format(
                 movie_title=movie.title,
-               
-            poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
-        )
+                poster_image_url=movie.poster_image_url,
+                trailer_youtube_id=trailer_youtube_id
+            )
     return content
 
 
