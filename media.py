@@ -32,8 +32,8 @@ class TVShow(Movie):  # Episodes are a nother kind os movie
 
     def __init__(self, title, story, poster, trailer, season, episode, station, ended):
 
-        Movie.__init__(self, title, story, poster, trailer)
-
+        # Movie.__init__(self, title, story, poster, trailer)
+        super(self.__class__, self).__init__(self, title, story, poster, trailer)  # using super
         self.season = season
         self.episode = episode
         self.station = station
